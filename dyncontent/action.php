@@ -1,9 +1,5 @@
 <?php
 /**
- * DokuWiki Plugin headerfooter (Action Component)
- *
- * @license GPL 2 http://www.gnu.org/licenses/gpl-2.0.html
- * @author  Li Zheng <lzpublic@qq.com>
  */
 
 // must be run within Dokuwiki

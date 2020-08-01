@@ -1,15 +1,7 @@
 <?php
 /**
  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
- * @author     Todd Augsburger <todd@rollerorgans.com>
- 
- 
-  Futuri change
-  ora il renderer fa una ricerca con parametro pagename. ritornando tutte le pagine che contengono quella parola.
-  serve fare un array unique perchè tanto get_page_dynamic_content prende tutte le occorrenze.
-  inoltre la query di ricerca sarebbe più corretta con [dyn nomepagina] e non solo nomepagina
-  dyn> rimane scritto
-  far vedere il contenuto (ben formattato) di dyn anche se non c'è nessun match ma nascondi i tag.
+
  */
 
 if(!defined('DOKU_INC')) define('DOKU_INC',realpath(dirname(__FILE__).'/../../').'/');
