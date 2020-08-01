@@ -58,7 +58,7 @@ class action_plugin_dyncontent extends DokuWiki_Action_Plugin {
         $base = str_replace('\\', '/', DOKU_INC) . 'data/pages/' . $ns; // 得到文件绝对路径
 		*/
 		
-		$squery = $pagename.'|'.$pagename.'">"';
+		$squery = $pagename.'*|'.$pagename.'">"';
 		$search = $this->get_search_results($squery);
 
 		if(count($search)){
@@ -82,17 +82,19 @@ class action_plugin_dyncontent extends DokuWiki_Action_Plugin {
 	
 	function get_page_dynamic_content($page_id, $pagename){
 		$content = rawWiki($page_id);
+		
 		//https://www.phpliveregex.com/#tab-preg-match-all
 		/*
 		$regex = '/(?<=<dyn ).*?(?=<\/b>)/';
         preg_match_all($regex, $data, $matched);
 		*/
-		$regex = '/<dyn (\w*\s*)*'.$pagename.'(\w*\s*)*>(.*?)<\/dyn>/';
+		$regex = '/<dyn \s*.*'.$pagename.'\s*.*>(.*?|[\s\S]*?)<\/dyn>/';
 		preg_match_all($regex,$content,$out);		
+		
 
-		foreach($out[3] as $match)
-			if (!empty($match))
-				$output .= $match."\n\n";
+		foreach($out as $match)
+			if (!empty($match[0]))
+				$output .= $match[0]."\n\n";
 
 		return $output;
 	}
