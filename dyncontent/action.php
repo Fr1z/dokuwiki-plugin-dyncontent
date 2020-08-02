@@ -88,13 +88,26 @@ class action_plugin_dyncontent extends DokuWiki_Action_Plugin {
 		$regex = '/(?<=<dyn ).*?(?=<\/b>)/';
         preg_match_all($regex, $data, $matched);
 		*/
-		$regex = '/<dyn \s*.*'.$pagename.'\s*.*>(.*?|[\s\S]*?)<\/dyn>/';
+		$regex = '/<dyn \s*?.*?'.$pagename.'\s*?.*?>(.*?|[\s\S]*?)<\/dyn>/';
 		preg_match_all($regex,$content,$out);		
 		
-
-		foreach($out as $match)
+/*
+		foreach($out as $match){
+			echo json_encode($match);
+			echo "<br/>";
 			if (!empty($match[0]))
-				$output .= $match[0]."\n\n";
+				echo "m0:".$match[0];
+			if (!empty($match[1]))
+				echo "m1:".$match[1];
+			echo "<br/>";
+			
+		}
+		echo "fine page: ".$page_id."<br />";
+		*/
+		
+		foreach($out[1] as $match)
+			if (!empty($match))
+				$output .= '[['.$page_id.'|→]] '.$match;
 
 		return $output;
 	}
